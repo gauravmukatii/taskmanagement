@@ -42,6 +42,12 @@ public class TaskService {
         return taskRepo.findAll();
     }
 
+    public Task getTaskById(Long Id){
+        return taskRepo.findById(Id).orElse(null);
+    }
+
+
+
 
 
 
