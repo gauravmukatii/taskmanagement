@@ -23,7 +23,7 @@ public class TaskService {
 
     public Task createTask(Task task){
 
-        if(task.getTitle().isEmpty() || task.getTitle() != null){
+        if(task.getTitle() == null || task.getTitle().isEmpty()){
             throw new IllegalArgumentException("Task title should not be empty or null");
         }
 

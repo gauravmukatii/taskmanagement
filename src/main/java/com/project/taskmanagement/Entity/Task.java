@@ -15,6 +15,9 @@ public class Task {
     private String description;
     private LocalDate dueDate;
 
+    public Task() {
+    }
+
     public Task(Long id, String title, String description, LocalDate dueDate) {
         Id = id;
         this.title = title;
