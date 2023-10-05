@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/tasks")
@@ -65,6 +66,18 @@ public class TaskController {
         catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to delete task");
         }
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Task>> searchByTitle(@RequestParam("title") String title){
+        List<Task> foundedTitle = taskService.searchByTitle(title);
+        return ResponseEntity.ok(foundedTitle);
+    }
+
+    @GetMapping("/getoverduetask")
+    public ResponseEntity<List<Task>> getOverDueTasks(){
+        List<Task> overDueTasks = taskService.getOverDueTasks();
+        return ResponseEntity.ok(overDueTasks);
     }
 
 }
