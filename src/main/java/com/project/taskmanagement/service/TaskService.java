@@ -7,6 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class TaskService {
 
@@ -31,9 +34,13 @@ public class TaskService {
         return savedTask;
     }
 
-//    public Task getAllTasks(){
-//
-//    }
+    public List<Task> getAllTasks(){
+//        List<Task> tasks = new ArrayList<Task>();
+//        taskRepo.findAll().forEach(task -> tasks.add(task));
+//        return tasks;
+
+        return taskRepo.findAll();
+    }
 
 
 
