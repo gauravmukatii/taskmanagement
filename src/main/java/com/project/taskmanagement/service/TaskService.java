@@ -2,6 +2,7 @@ package com.project.taskmanagement.service;
 
 import com.project.taskmanagement.Entity.Task;
 import com.project.taskmanagement.repository.TaskRepo;
+import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,19 @@ public class TaskService {
 
     public Task getTaskById(Long Id){
         return taskRepo.findById(Id).orElse(null);
+    }
+
+    public Task updateTask(Long Id, Task updatedTask){
+        Task existingTask = taskRepo.findById(Id).orElseThrow(() -> new EntityNotFoundException("Task not exist"));
+
+        existingTask.setId(updatedTask.getId());
+        existingTask.setTitle(updatedTask.getTitle());
+        existingTask.setDescription(updatedTask.getDescription());
+        existingTask.setDueDate(updatedTask.getDueDate());
+
+        Task updated = taskRepo.save(existingTask);
+
+        return updated;
     }
 
 

@@ -41,4 +41,16 @@ public class TaskController {
     public Task getById(@PathVariable Long Id){
         return taskService.getTaskById(Id);
     }
+
+    @PutMapping("/update/{Id}")
+    public ResponseEntity<Task> updateTask(@PathVariable Long Id, @RequestBody Task updatedtask){
+        try{
+            Task updated = taskService.updateTask(Id, updatedtask);
+            return ResponseEntity.status(HttpStatus.CREATED).body(updated);
+        }
+        catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
 }
