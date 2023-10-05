@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +60,13 @@ public class TaskService {
         Task updated = taskRepo.save(existingTask);
 
         return updated;
+    }
+
+    public void deleteTask(Long Id){
+        Task task = taskRepo.findById(Id).orElseThrow(() -> new EntityNotFoundException("Task not existed so check its id once again"));
+
+        taskRepo.deleteById(Id);
+
     }
 
 
